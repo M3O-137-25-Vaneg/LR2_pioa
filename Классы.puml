@@ -1,0 +1,55 @@
+@startuml
+
+class Game {
+    {field} player: Player
+    {field} current_location: Location
+    {method} start()
+    {method} battle()
+    {method} find_artifact()
+    {method} save_game()
+    {method} make_choice()
+}
+
+class Player {
+    {field} username: str
+    {field} health: int
+    {field} attack: int
+    {field} defense: int
+    {field} artifacts: List[Artifact]
+    {method} add_artifact(artifact)
+    {method} take_damage(damage)
+    {method} show_stats()
+}
+
+class Boss {
+    {field} name: str
+    {field} hp: int
+    {field} attack: int
+    {method} take_damage(damage)
+}
+
+class Artifact {
+    {field} name: str
+    {field} attack_bonus: int
+    {field} defense_bonus: int
+    {field} ability: str
+}
+
+class ArtifactManager {
+    {field} base_artifacts: List[Artifact]
+    {method} get_random_artifact()
+}
+
+class Location {
+    {field} name: str
+    {field} description: str
+    {method} enter(player)
+}
+
+Game --> Player
+Game --> ArtifactManager
+Game --> Location
+Game --> Boss
+Player --> Artifact
+ArtifactManager --> Artifact
+@enduml
