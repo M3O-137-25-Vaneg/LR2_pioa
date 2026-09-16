@@ -1,0 +1,76 @@
+@startuml
+top to bottom direction
+
+component "Play" as Play
+
+component "Story" as Story
+component "Battle" as Battle
+component "Player" as Player
+component "Artifacts" as Artifacts
+component "Save System" as Save
+
+component "game_loop" as GameLoop
+component "continue_story" as ContinueStory
+component "play_chapter" as PlayChapter
+
+component "start_battle" as StartBattle
+component "player_turn" as PlayerTurn
+
+component "take_damage" as TakeDamage
+component "get_stats" as GetStats
+
+component "add_artifact" as AddArtifact
+component "show_collection" as ShowCollection
+
+component "save_game" as SaveGame
+component "load_save" as LoadSave
+
+Play --> GameLoop
+
+GameLoop --> Story
+GameLoop --> Battle
+GameLoop --> Player
+GameLoop --> Artifacts
+GameLoop --> Save
+
+Story --> ContinueStory
+ContinueStory --> PlayChapter
+
+Battle --> StartBattle
+StartBattle --> PlayerTurn
+
+Player --> TakeDamage
+Player --> GetStats
+
+Artifacts --> AddArtifact
+Artifacts --> ShowCollection
+
+Save --> SaveGame
+Save --> LoadSave
+
+
+note right of Story
+Управление сюжетом
+и главами игры
+end note
+
+note right of Battle
+Пошаговая боевая система
+end note
+
+note right of Player
+Характеристики
+и состояние игрока
+end note
+
+note right of Artifacts
+Работа с коллекцией
+артефактов
+end note
+
+note right of Save
+Сохранение и загрузка
+прогресса игры
+end note
+
+@enduml

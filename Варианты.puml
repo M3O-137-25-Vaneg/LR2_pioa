@@ -1,0 +1,83 @@
+@startuml
+top to bottom direction
+
+actor "Игрок" as Player
+
+rectangle "Игра" {
+
+    usecase "Новая игра" as NewGame
+    usecase "Загрузка игры" as LoadGame
+    usecase "Игровой процесс" as GameProcess
+
+    usecase "Исследовать локации" as Explore
+    usecase "Коллекция артефактов" as Artifacts
+    usecase "Сохранить игру" as Save
+    usecase "Статус игрока" as Status
+    usecase "Продолжить историю" as Continue
+
+    usecase "Глава 1:\nПробуждение" as Ch1
+    usecase "Глава 2:\nВыбор пути" as Ch2
+    usecase "Выбор лидера" as Leader
+
+    usecase "Боевая система" as Battle
+    usecase "Победа" as Victory
+    usecase "Гибель" as Death
+
+    usecase "Глава 3:\nВторой кристалл\nи союзы" as Ch3
+    usecase "Глава 4:\nТретий кристалл\nи правда" as Ch4
+    usecase "Глава 5:\nФинальный выбор" as Ch5
+
+    usecase "Финальный выбор" as FinalChoice
+    usecase "Финальная битва" as FinalBattle
+
+    usecase "Победа" as FinalVictory
+    usecase "Гибель" as FinalDeath
+
+    usecase "Конец истории" as Ending
+    usecase "КОНЕЦ ИГРЫ" as GameOver
+}
+
+
+Player --> NewGame
+Player --> LoadGame
+
+NewGame --> GameProcess
+LoadGame --> GameProcess
+
+
+GameProcess --> Explore
+GameProcess --> Artifacts
+GameProcess --> Save
+GameProcess --> Status
+GameProcess --> Continue
+
+
+Continue --> Ch1
+Ch1 --> Ch2
+
+Ch2 --> Leader
+Leader --> Battle
+
+Battle --> Victory
+Battle --> Death
+
+Victory --> Ch3
+Death --> GameOver
+
+Ch3 --> Ch4
+Ch4 --> Ch5
+
+Ch5 --> FinalChoice
+
+FinalChoice --> Ending
+FinalChoice --> FinalBattle
+
+FinalBattle --> FinalVictory
+FinalBattle --> FinalDeath
+
+FinalVictory --> Ending
+FinalDeath --> GameOver
+
+Ending --> GameOver
+
+@enduml

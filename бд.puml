@@ -1,0 +1,40 @@
+@startuml
+
+entity "Player" as Player {
+    * player_id : INT
+    --
+    name : VARCHAR
+    hp : INT
+    damage : INT
+    defense : INT
+    morality : INT
+}
+
+entity "Save" as Save {
+    * save_id : INT
+    --
+    login : VARCHAR
+    created : DATETIME
+    last_saved : DATETIME
+    chapter : INT
+    boss_defeated : BOOLEAN
+}
+
+entity "Artifact" as Artifact {
+    * artifact_id : INT
+    --
+    name : VARCHAR
+    damage : INT
+    defense : INT
+}
+
+entity "PlayerArtifact" as PA {
+    * player_id : INT
+    * artifact_id : INT
+}
+
+Player ||--|| Save
+Player ||--o{ PA
+Artifact ||--o{ PA
+
+@enduml
